@@ -1,0 +1,11 @@
+Top Books 1: 100001, 5
+Top Books 2: 100003, 2 Top Books 3: 100002, 1
+
+List of books not issued:
+100004
+100020
+
+Book id 100005 is available for checkout.
+
+All available copies of the below books have been checked out:
+100001
