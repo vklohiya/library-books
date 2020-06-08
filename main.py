@@ -11,18 +11,18 @@ def main():
         for line in f.readlines():
             if "check" in line:
                 line = line.split(':')
-                libraryTree._chkInChkOut(line[0], line[1])
+                libraryTree._chkInChkOut(int(line[1]), line[0])
             elif "ListTopBooks" in line:
-                libraryTree._getTopBooks(libraryTree)
+                libraryTree._getTopBooks(libraryTree.rootNode)
             elif "BooksNotIssued" in line:
-                libraryTree._notIssued(libraryTree)
+                libraryTree._notIssued(libraryTree.rootNode)
             elif "ListStockOut" in line:
-                libraryTree._stockOut(libraryTree)
+                libraryTree._stockOut(libraryTree.rootNode)
             elif "printInventory" in line:
-                libraryTree.printBooks(libraryTree)
+                libraryTree.printBooks(libraryTree.rootNode)
             elif "findBook" in line:
                 line = line.split(':')
-                libraryTree._findBook(libraryTree, line[1])
+                libraryTree._findBook(libraryTree.rootNode, int(line[1]))
             else:
                 print("Action not defined")
 
