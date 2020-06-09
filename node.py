@@ -39,6 +39,7 @@ class BookNode:
 
     # Print the tree based on stockOut and notIssued flags
     def printTree(self, stockOut=False, notIssued=False):
+        # Traversing the tree in pre-order
         if self.left:
             self.left.printTree(stockOut=stockOut, notIssued=notIssued)
         if stockOut and self.availCount == 0:

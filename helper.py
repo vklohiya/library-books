@@ -54,7 +54,7 @@ class LibraryTree:
         Top Books 2: 100003, 2
         Top Books 3: 100002, 1"
         """
-        kthLargest(bkNode, 1)
+        kTopBooks(bkNode, 3)
 
     def _notIssued(self, bkNode):
         """This function is triggered when the following tag is encountered in the promptsPS9.txt file: "BooksNotIssued"
@@ -110,14 +110,13 @@ class LibraryTree:
 
 def getBookTitleCount(root):
     """This function returns the total nodes in the tree"""
-    #### Fix this function does not provide total count
+    count = 1
     if root is None:
         return 0
-    res = 0
-    if root.left is not None and root.right is not None:
-        res += 1
-    res += getBookTitleCount(root.left) + getBookTitleCount(root.right)
-    return res
+    else:
+        count += getBookTitleCount(root.left)
+        count += getBookTitleCount(root.right)
+    return count
 
 
 def nodeExists(node, bookID):
@@ -140,38 +139,26 @@ def nodeExists(node, bookID):
     return res2
 
 
-def kthLargest(root, k):
-    """This function find the top k'th book issued from the library"""
+def kTopBooks(root, k):
+    """This function find the top k book issued from the library"""
 
-    #### Fix this function does not work as expected
-    def kthLargestUtil(root, k, c):
-        # Base cases, the second condition is important to avoid unnecessary recursive calls
-        if root == None or c[0] >= k:
-            return
+    # Initialize the dictionary
+    bookDict = {}
 
-        # Traversing the tree in pre-order
+    kTopBooksUtil(root, bookDict)
 
-        # Traverse the left subtree
-        kthLargestUtil(root.left, k, c)
+    kTop = {k: v for k, v in sorted(bookDict.items(), key=lambda item: item[1], reverse=True)}
 
-        # Increment count of visited nodes
-        c[0] += 1
+    for i in range(k):
+        print(f"Top Books {i+1}: {list(kTop.keys())[i+1]}, {list(kTop.values())[i+1]}")
 
-        # If c becomes k now, then this is
-        # the k'th largest
-        if c[0] == k:
-            print("K'th largest element is",
-                  root.bkID)
-            return
 
-        # Recur for right subtree
-        kthLargestUtil(root.right, k, c)
-
-    # Initialize count of nodes
-    # visited as 0
-    c = [0]
-
-    # Note that c is passed by reference
-    kthLargestUtil(root, k, c)
+def kTopBooksUtil(root, bookDict):
+    # Traversing the tree in pre-order and storing the book id and checkoutCount in dictionary
+    if root.left:
+        kTopBooksUtil(root.left, bookDict)
+    bookDict[root.bkID] = root.checkoutCount
+    if root.right:
+        kTopBooksUtil(root.right, bookDict)
 
 
