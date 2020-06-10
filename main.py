@@ -1,14 +1,26 @@
-import helper
+import node
+import os
 
 # Initializing the filepaths
 prompt_file = "promptsPS9.txt"
-
+input_file = "inputPS9.txt"
 
 def main():
     """This is the main function which reads the promptsPS9.txt and test the binary ATD"""
-    libraryTree = helper.LibraryTree()
+    if not os.path.exists(prompt_file) or not os.path.exists(input_file):
+        print("inputPS9.txt or promptPS9.txt file not found.")
+        exit(1)
+    libraryTree = node.LibraryTree()
+    if libraryTree.getBookTitleCount(libraryTree.rootNode) == 0:
+        print("inputPS9.txt is empty")
+        exit(1)
     with open(prompt_file, "r") as f:
-        for line in f.readlines():
+        lines = f.readlines()
+        if len(lines) == 0:
+            "promptPS9.txt is empty"
+            exit(1)
+        for line in lines:
+            line.strip()
             if "check" in line:
                 line = line.split(':')
                 libraryTree._chkInChkOut(int(line[1]), line[0])
@@ -24,7 +36,7 @@ def main():
                 line = line.split(':')
                 libraryTree._findBook(libraryTree.rootNode, int(line[1]))
             else:
-                print("Action not defined")
+                pass
 
 if __name__ == "__main__":
     main()
