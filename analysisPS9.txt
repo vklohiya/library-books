@@ -1,16 +1,12 @@
-Analysis for the running time of different methods used in the project.
-1. def _readBookList(self, bkID, availCount):This function reads the book ids and the number of copies available from the inputPS9.txt file. It takes O(1) time for execution as it dont have any loop, and the number of executions are a constant value.
-2.def_chkInChkOut(self, bkID, inOut): This function updates the check in / check out status of a book based on the book id. This function takes O(1) time for execution. 
-3. def _getTopBooks(self, bkNode): This function is triggered when the following tag is encountered in the promptsPS9.txt file: ListTopBooks. This function takes O(n) time for execution. 
-4. def _notIssued(self, bkNode): This function is triggered when the following tag is encountered in the promptsPS9.txt file: BooksNotIssued, The function searches the list of books in the system and generates a list of books which have never been checked out. This function takes O(n) time for execution. 
-5. def _findBook(self, eNode, bkID): This function reads the promptsPS9.txt file to get the book id that needs to be searched for availability in the system. It takes O(n) time for execution. 
-6. def _stockOut(self, eNode): This function is triggered when the following tag is encountered in the promptsPS9.txt file: ListStockOut , This function searches for books for which all the available copies have been checked out and outputs the list into the outputPS9.txt file. This function takes O(n) time for execution. 
-7.def printBooks(self, bkNode): The input should be read from the promptsPS9.txt file where the range is mentioned with the tag. This function takes O(1) time for execution. 
-
 Using the above management system, you are required to help the school answer the below questions. For each of the questions, we have the following time complexity.  
-1. Which three books have been issued the greatest number of times? O(n) time complexity
-2. Which books do not have any more copies left in the library (all copies have been issued)? O(1) time complexity
-3. Find out if a particular book is available in the library based on the book id. O(n) time complexity
+1. Which three books have been issued the greatest number of times? 
+Ans: It will take O(n) time complexity as the traverse the  nodes in the tree. We are storing the data in a dictionary, and then sorting the data. Sorting the data takes again O(n). Total time complexity  is O(n+n) which is equal to O(2n) . This can be reduced to O(n) as the final time complexity for this method. 
+2. Which books do not have any more copies left in the library (all copies have been issued)?
+Ans:  O(n) time complexity As it takes traverse the whole tree
+3. Find out if a particular book is available in the library based on the book id. 
+Ans: O(log(n)) time complexity as we are searching for a particular book id and not traversing the whole tree. 
 4. Out of the entire set of books in the library, list the books that have never been checked out
-by students? O(n) time complexity
-5. Print a list of all the books and available copies. O(n) complexity
+by students?
+Ans: O(n) time complexity, as we need to traverse the whole tree. 
+5. Print a list of all the books and available copies. 
+Ans: O(n) time complexity, as we need to traverse the whole tree. 
